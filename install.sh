@@ -76,7 +76,7 @@ EOF
 
 
 #常用
-sudo pacman -S meson libxcb xcb-proto xcb-util xcb-util-keysyms libxfixes libx11 libxcomposite xorg-xinput libxrender pixman wayland-protocols cairo pango seatd libxkbcommon xcb-util-wm xorg-xwayland libinput libliftoff libdisplay-info cpio
+sudo pacman -S meson libxcb xcb-proto xcb-util xcb-util-keysyms libxfixes libx11 libxcomposite xorg-xinput libxrender pixman wayland-protocols cairo pango seatd libxkbcommon xcb-util-wm xorg-xwayland libinput libliftoff libdisplay-info cpio ctags
 sudo pacman -S clash v2ray v2raya
 #配置clash
 clash
@@ -168,3 +168,6 @@ sudo pacman -S texlive-core texlive-langchinese
 #博客
 sudo pacman -S npm nodejs
 paru -S hexo-cli
+
+sudo cp ~/Archinstall/.vimrc ~/
+
