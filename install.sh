@@ -116,7 +116,7 @@ sudo pacman -S jdk-openjdk
 sudo pacman -S obs-studio xdg-desktop-portal xdg-desktop-portal-kde
 sudo pacman -S ntfs-3g
 sudo pacman -S adobe-source-han-serif-cn-fonts wqy-zenhei
-sudo pacman -S noto-fonts-cjk noto-fonts-emoji noto-fonts-extra ttf-jetbrains-mono-nerd ttf-jetbrains-mono
+sudo pacman -S noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra ttf-jetbrains-mono-nerd ttf-jetbrains-mono
 paru -S google-chrome
 sudo pacman -S ark mpv
 sudo pacman -S p7zip unrar unarchiver lzop lrzip okular spectacle tar
@@ -169,5 +169,8 @@ sudo pacman -S texlive-core texlive-langchinese
 sudo pacman -S npm nodejs
 paru -S hexo-cli
 
-sudo cp ~/Archinstall/.vimrc ~/
+sudo cp /home/akira/Archinstall/.vimrc /home/akira
 
+cd /home/akira/.config/
+mkdir fontconfig
+sudo cp /home/akira/Archinstall/fonts.conf /home/akira/.config/fontconfig/
