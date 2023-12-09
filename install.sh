@@ -125,11 +125,11 @@ sudo pacman -S packagekit-qt5 packagekit appstream-qt appstream
 sudo pacman -S gwenview
 sudo pacman -S gwenview
 sudo pacman -S steam
-sudo pacman -S obsidian
+sudo pacman -S obsidian ghostwriter
 sudo pacman -S telegram-desktop
 sudo pacman -S arm-none-eabi-gcc arm-none-eabi-newlib
 sudo pacman -S stlink openocd
-sudo pacman -S calibre
+sudo pacman -S foliate
 #终端
 sudo pacman -S zsh zsh-autosuggestions zsh-syntax-highlighting zsh-completions autojump
 chsh -s /usr/bin/zsh
@@ -158,19 +158,21 @@ zmodule romkatv/powerlevel10k
 EOF
 zimfw install
 
-paru -S visual-studio-code-bin clion clion-jre clion-gdb clion-cmake typora-free linuxqq yesplaymusic stm32cubemx qqmusic-electron netease-cloud-music wps-office-cn wps-office-mui-zh-cn ttf-wps-fonts baidunetdisk-bin
+paru -S visual-studio-code-bin clion clion-jre clion-gdb clion-cmake typora-free linuxqq yesplaymusic stm32cubemx qqmusic-electron netease-cloud-music wps-office-cn wps-office-mui-zh-cn ttf-wps-fonts baidunetdisk-bin lceda-pro-bin xmind pycharm
 sudo downgrade 'freetype2=2.13.0'
-sudo pacman -S minecraft-launcher steam
+sudo pacman -S minecraft-launcher steam blender
 
-sudo pacman -S texlive-core texlive-langchinese
-
+sudo pacman -S texlive texlive-langchinese 
+sudo pacman -S gparted kicad gimp thunderbird qbittorrent
 
 #博客
 sudo pacman -S npm nodejs
 paru -S hexo-cli
 
-sudo cp /home/akira/Archinstall/.vimrc /home/akira
+#sudo cp /home/akira/Archinstall/.vimrc /home/akira
+sudo cp /home/akira/Archinstall/.vimrc /etc/vimrc
 
 cd /home/akira/.config/
 mkdir fontconfig
 sudo cp /home/akira/Archinstall/fonts.conf /home/akira/.config/fontconfig/
+
