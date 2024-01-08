@@ -193,6 +193,7 @@ o
 Description=AutoExec
 [Service]
 ExecStart=/home/akira/configuration/auto-connect.sh
+After=onLogin.service
 Restart=always
 RestartSec=1
 [Install]
@@ -217,3 +218,5 @@ WantedBy=multi-user.target
 
 :wq
 EOF
+systemctl enable AutoExec.service
+systemctl enable onLogin.service
