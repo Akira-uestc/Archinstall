@@ -1,7 +1,7 @@
 sudo pacman -S paru texinfo
 
 #开启颜色提醒、并行下载、multilib和cn库
-sudo vim /etc/pacman.conf << EOF
+sudo vim /etc/pacman.conf <<EOF
 /Color
 
 x
@@ -28,7 +28,6 @@ sudo pacman -S archlinuxcn-keyring base-devel
 sudo mv /etc/makepkg.conf /home/akira/
 sudo cp /home/akira/Archinstall/makepkg.conf /etc/
 
-
 #桌面
 sudo pacman -S mesa vulkan-intel intel-media-driver
 sudo pacman -S plasma-meta konsole dolphin plasma-wayland-session
@@ -36,30 +35,26 @@ sudo systemctl enable sddm.service
 balooctl suspend
 balooctl disable
 
-
 #电源管理
 sudo pacman -S tlp
 sudo systemctl enable tlp.service
 systemctl mask systemctl-rfkill.service
 systemctl mask systemctl-rfkill.socket
 
-
 #声音
 sudo pacman -S sof-firmware alsa-firmware alsa-ucm-conf
 sudo pacman -S pipewire pipewire-pulse pipewire-alsa pipewire-audio gst-plugin-pipewire pipewire-jack pavucontrol wireplumber
 
-
 #蓝牙
 sudo pacman -S bluez bluez-utils bluedevil
 sudo systemctl enable --now bluetooth
-
 
 #输入法
 sudo pacman -S fcitx5 fcitx5-chinese-addons fcitx5-qt fcitx5-gtk fcitx5-chewing fcitx5-configtool
 sudo pacman -S fcitx5-material-color
 sudo pacman -S fcitx5-pinyin-zhwiki
 ##设置环境变量
-sudo vim /etc/environment << EOF
+sudo vim /etc/environment <<EOF
 G
 $
 o
@@ -73,7 +68,6 @@ GLFW_IM_MODULE=ibus
 
 :wq
 EOF
-
 
 #常用
 sudo pacman -S meson libxcb xcb-proto xcb-util xcb-util-keysyms libxfixes libx11 libxcomposite xorg-xinput libxrender pixman wayland-protocols cairo pango seatd libxkbcommon xcb-util-wm xorg-xwayland libinput libliftoff libdisplay-info cpio ctags
@@ -99,7 +93,7 @@ WantedBy=multi-user.target
 
 systemctl enable clash
 systemctl start clash
-sudo vim /etc/environment << EOF
+sudo vim /etc/environment <<EOF
 G
 $
 o
@@ -114,7 +108,7 @@ EOF
 
 sudo pacman -S jdk-openjdk
 sudo pacman -S obs-studio xdg-desktop-portal xdg-desktop-portal-kde
-sudo pacman -S ntfs-3g
+sudo pacman -S ntfs-3g scrcpy android-tools gnome-sound-recorder
 sudo pacman -S adobe-source-han-serif-cn-fonts wqy-zenhei
 sudo pacman -S noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra ttf-jetbrains-mono-nerd ttf-jetbrains-mono
 paru -S google-chrome
@@ -131,9 +125,9 @@ sudo pacman -S arm-none-eabi-gcc arm-none-eabi-newlib
 sudo pacman -S stlink openocd
 sudo pacman -S foliate
 #终端
-sudo pacman -S zsh zsh-autosuggestions zsh-syntax-highlighting zsh-completions autojump
+sudo pacman -S zsh zsh-autosuggestions zsh-syntax-highlighting zsh-completions autojump wl-clipboard
 chsh -s /usr/bin/zsh
-sudo vim /home/akira/.zshrc << EOF
+sudo vim /home/akira/.zshrc <<EOF
 G
 $
 o
@@ -146,7 +140,7 @@ source /usr/share/autojump/autojump.zsh
 :wq
 EOF
 curl -fsSL https://raw.githubusercontent.com/zimfw/install/master/install.zsh | zsh
-sudo vim /home/akira/.zimrc << EOF
+sudo vim /home/akira/.zimrc <<EOF
 G
 $
 o
@@ -158,11 +152,12 @@ zmodule romkatv/powerlevel10k
 EOF
 zimfw install
 
-paru -S visual-studio-code-bin clion clion-jre clion-gdb clion-cmake typora-free linuxqq yesplaymusic stm32cubemx qqmusic-electron netease-cloud-music wps-office-cn wps-office-mui-zh-cn ttf-wps-fonts baidunetdisk-bin lceda-pro-bin xmind pycharm
+paru -S visual-studio-code-bin clion clion-jre clion-gdb clion-cmake typora-free linuxqq yesplaymusic stm32cubemx qqmusic-electron netease-cloud-music wps-office-cn wps-office-mui-zh-cn ttf-wps-fonts baidunetdisk-bin lceda-pro-bin xmind pycharm praat
+sudo pacman -S python-matplotlib python-scipy python-numpy python-
 sudo downgrade 'freetype2=2.13.0'
 sudo pacman -S minecraft-launcher steam blender
 
-sudo pacman -S texlive texlive-langchinese 
+sudo pacman -S texlive texlive-langchinese
 sudo pacman -S gparted kicad gimp thunderbird qbittorrent
 
 #博客
@@ -176,3 +171,49 @@ cd /home/akira/.config/
 mkdir fontconfig
 sudo cp /home/akira/Archinstall/fonts.conf /home/akira/.config/fontconfig/
 
+paru -S clementine
+
+sudo pacman -S wine winetricks zenity lib32-gnutls lib32-pipewire
+winetricks d3dx9 quartz devenum wmp10 gdiplus dotnet40 ffdshow vcrun6 cjkfonts
+
+mkdir /home/akira/configuration/
+cp ./onLogin.sh /home/akira/configuration/
+cp ./MyStlink.cfg /home/akira/configuration/
+cp ./UESTC-WIFI.py /home/akira/configuration/
+cp ./auto-connect.sh /home/akira/configuration/
+cp ./VSCode_cpp_color_scheme_for_clion.icls /home/akira/configuration/
+
+sudo vim /usr/lib/systemd/system/AutoExec.service <<EOF
+G
+$
+o
+
+
+[Unit]
+Description=AutoExec
+[Service]
+ExecStart=/home/akira/configuration/auto-connect.sh
+Restart=always
+RestartSec=1
+[Install]
+WantedBy=multi-user.target
+
+:wq
+EOF
+sudo vim /usr/lib/systemd/system/onLogin.service <<EOF
+G
+$
+o
+
+
+[Unit]
+Description=onLogin
+
+[Service]
+ExecStart=/home/akira/configuration/onLogin.sh
+
+[Install]
+WantedBy=multi-user.target
+
+:wq
+EOF
